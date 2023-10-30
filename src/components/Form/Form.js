@@ -1,12 +1,34 @@
 import "./Form.css";
 import { useState } from "react"; //need state, dealing with data (updating and making changes)
 
-const Form = () => {
+const Form = ( {addTrick} ) => {
   const [stance, setStance] = useState(""); //dropdown menu for stance
   const [name, setName] = useState(""); //input field for name of tricks
   const [obstacle, setObstacle] = useState(""); //dropdown menu for obstacle
   const [tutorial, setTutorial] = useState(""); //input link field for tutorial
   
+  //submitTrick component here
+  const submitTrick = (event) => {
+    event.preventDefault()
+
+    const newTrick = {
+      stance, 
+      name, 
+      obstacle, 
+      tutorial,
+      id: Date.now(), //gives you a unique # to store your data in local state
+    }
+    addTrick(newTrick)
+    clearInput()
+  }
+
+  const clearInput = () => {
+    setStance('')
+    setName('')
+    setObstacle('')
+    setTutorial('')
+  }
+
   return (
     <form>
       <select value={stance} onChange={(event) => setStance(event.target.value)}>
@@ -37,7 +59,7 @@ const Form = () => {
         value={tutorial}
         onChange={(event) => setTutorial(event.target.value)}
       /> 
-      <button>Send it!</button>
+      <button onClick= {event => submitTrick(event)}>Send it!</button>
     </form>
   );
 };

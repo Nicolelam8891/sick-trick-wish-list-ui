@@ -34,10 +34,15 @@ const App = () => {
   //checked components in dev tools, dummyData shows up.
   const [tricks, setTricks] = useState(dummyData);
 
+  //component to add trick
+  const addTrick = (newTrick) => {
+    setTricks([...tricks, newTrick])
+  }
+
   return (
     <div className='App'>
       <h1>Sick Trick Wish List</h1>
-      <Form /> 
+      <Form addTrick={addTrick}/> 
       <TricksContainer tricks={tricks}/> 
     </div>
   );
