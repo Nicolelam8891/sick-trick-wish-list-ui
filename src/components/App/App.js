@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { useState } from "react"; //need to import useState in order to use the component state
+import { useState, useEffect } from "react"; //need to import useState in order to use the component state. Will need useEffect for GET network request
 import TricksContainer from "../Trick/Trick"; //this is from Trick.js
 import Form from "../Form/Form";
 
@@ -32,7 +32,23 @@ const App = () => {
   //set State
   //initial value is dummyData 
   //checked components in dev tools, dummyData shows up.
-  const [tricks, setTricks] = useState(dummyData);
+  const [tricks, setTricks] = useState([]);
+
+//GET network request
+const getAllTricks = () => {
+  return fetch ("http://localhost:3001/api/v1/tricks")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    setTricks([...tricks, ...data])
+})
+.catch (error => console.log(error.message))
+}
+
+//useEffect 
+useEffect(() => {
+  getAllTricks()
+}, []);
 
   //component to add trick
   const addTrick = (newTrick) => {
