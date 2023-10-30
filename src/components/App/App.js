@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 import { useState } from "react"; //need to import useState in order to use the component state
 import TricksContainer from "../Trick/Trick"; //this is from Trick.js
+import Form from "../Form/Form";
 
 const App = () => {
   const dummyData = [
@@ -36,6 +37,7 @@ const App = () => {
   return (
     <div className='App'>
       <h1>Sick Trick Wish List</h1>
+      <Form /> 
       <TricksContainer tricks={tricks}/> 
     </div>
   );
