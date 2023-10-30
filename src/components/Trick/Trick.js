@@ -1,7 +1,10 @@
 import './Trick.css';
 import Card from '../Card/Card';
 
+//console log for prop working
+//cards rendering on DOM
 const TricksContainer = ( {tricks} ) => {
+  // console.log("tricks:=====", tricks);
   const trickCards = tricks.map((trick) => {
     const { stance, name, obstacle, tutorial, id } = trick;
   
